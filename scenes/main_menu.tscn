@@ -1,3 +1,41 @@
-[gd_scene format=3 uid="uid://bwetge866k1rt"]
+[gd_scene load_steps=3 format=3 uid="uid://bwetge866k1rt"]
+
+[ext_resource type="Script" uid="uid://da25lopd4vtr5" path="res://objects/general/load_scene.gd" id="1_l6cm7"]
+[ext_resource type="PackedScene" uid="uid://2sdw3p1j1ecu" path="res://scenes/test_field.tscn" id="2_ekxnf"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="play" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Play"
+
+[node name="demo field" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Test field
+"
+script = ExtResource("1_l6cm7")
+scene = ExtResource("2_ekxnf")
+metadata/_custom_type_script = "uid://da25lopd4vtr5"
+
+[node name="Settings" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Settings"

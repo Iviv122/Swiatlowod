@@ -1,7 +1,7 @@
 extends Sprite2D
 class_name GunSprite
 
-@export var pivot : Node2D
+@export var pivot : GunHolder 
 @export var speed  :float
 @export var rotate_speed : float
 @export var posy_on_shot : float
@@ -20,13 +20,14 @@ func on_shot():
 func _process(delta):
 	var dir = get_global_mouse_position()-global_position
 	var l = dir.length()
+	
+	var pos = pivot.global_position + pivot.weapon_pos
 
 	if l >max_offset*max_offset:
-		global_position = global_position.move_toward(pivot.global_position,speed*speed*delta*2)
+		global_position = global_position.move_toward(pos,speed*speed*delta*2)
 	elif l >max_offset:
-		global_position = global_position.move_toward(pivot.global_position,speed*delta*2)
+		global_position = global_position.move_toward(pos,speed*delta*2)
 	else:
-		global_position = global_position.move_toward(pivot.global_position,delta*speed/2)
+		global_position = global_position.move_toward(pos,delta*speed/2)
 
-	rotation = rotate_toward(rotation,dir.angle(),rotate_speed*delta)
-	rotation += pivot.rotation
+	rotation =  rotate_toward(rotation,dir.angle()+pivot.weapon_pos.angle(),rotate_speed*delta)

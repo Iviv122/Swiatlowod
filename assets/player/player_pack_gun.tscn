@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://uvoj4shclb3a"]
+[gd_scene load_steps=14 format=3 uid="uid://uvoj4shclb3a"]
 
 [ext_resource type="Texture2D" uid="uid://dxr2hvmgmqrxj" path="res://raw_assets/leg.png" id="1_mowxb"]
 [ext_resource type="Texture2D" uid="uid://bcybb5yoom05u" path="res://raw_assets/body.png" id="2_abrf3"]
 [ext_resource type="Script" uid="uid://84ey01ams5xy" path="res://objects/player/torso_movement.gd" id="3_6fwas"]
+[ext_resource type="Script" uid="uid://bywpc1jdu8wu6" path="res://objects/player/gun_holder.gd" id="5_abrf3"]
 [ext_resource type="Script" uid="uid://w5lwre75jjcp" path="res://objects/player/legs_movement.gd" id="5_km2es"]
 [ext_resource type="Texture2D" uid="uid://ciy71eeti6u3b" path="res://raw_assets/head.png" id="8_cpa5h"]
-[ext_resource type="Script" uid="uid://b7cui0a6xjwgu" path="res://objects/gun_sprite.gd" id="8_p6iwn"]
+[ext_resource type="Script" uid="uid://b7cui0a6xjwgu" path="res://objects/player_gun/gun_sprite.gd" id="8_p6iwn"]
 [ext_resource type="Script" uid="uid://geuq4ne3nt4k" path="res://objects/player/head_movement.gd" id="9_bfw8s"]
-[ext_resource type="Script" uid="uid://b3u1kvkolnl45" path="res://objects/gunshoot.gd" id="9_q1gb7"]
+[ext_resource type="Script" uid="uid://b3u1kvkolnl45" path="res://objects/player_gun/gunshoot.gd" id="9_q1gb7"]
 [ext_resource type="Script" uid="uid://dyn3cmlils2wa" path="res://objects/player/player_movement.gd" id="10_dk2kp"]
 [ext_resource type="Resource" uid="uid://du6agdna6cwv8" path="res://assets/mlg_gun.res" id="10_mowxb"]
 [ext_resource type="Texture2D" uid="uid://dnhnbl6j2hkqi" path="res://raw_assets/gun.png" id="11_a6m67"]
@@ -60,8 +61,21 @@ scale = Vector2(0.99999994, 0.99999994)
 [node name="rightleg" type="Node2D" parent="torso"]
 position = Vector2(-60, 259.99997)
 
-[node name="gun_pivot" type="Node2D" parent="torso"]
+[node name="gun_pivot" type="Node2D" parent="torso" node_paths=PackedStringArray("left_hand_pivot", "right_hand_pivot")]
 position = Vector2(95, -44.999992)
+script = ExtResource("5_abrf3")
+left_hand_pivot = NodePath("../left_hand")
+right_hand_pivot = NodePath("../right_hand")
+x_offset = 15.0
+metadata/_custom_type_script = "uid://bywpc1jdu8wu6"
+
+[node name="left_hand" type="Node2D" parent="torso"]
+position = Vector2(-154.99997, 14.999996)
+scale = Vector2(5, 5)
+
+[node name="right_hand" type="Node2D" parent="torso"]
+position = Vector2(160, 15.000002)
+scale = Vector2(5, 5)
 
 [node name="Head" type="Sprite2D" parent="." node_paths=PackedStringArray("pivot")]
 position = Vector2(0, -45)
