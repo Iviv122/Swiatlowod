@@ -46,7 +46,8 @@ metadata/_custom_type_script = "uid://cjakgnmo4hucw"
 position = Vector2(4.9999995, -225)
 scale = Vector2(4.9999995, 4.9999995)
 
-[node name="Legs" type="Node2D" parent="torso" node_paths=PackedStringArray("left_leg_pivot", "right_leg_pivot", "left_leg", "right_leg")]
+[node name="Legs" type="Node2D" parent="torso" node_paths=PackedStringArray("left_leg_pivot", "right_leg_pivot", "left_leg", "right_leg", "player_movement")]
+position = Vector2(-5, 245)
 scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("5_km2es")
 left_leg_pivot = NodePath("../leftleg")
@@ -54,14 +55,19 @@ right_leg_pivot = NodePath("../rightleg")
 left_leg = NodePath("../../LeftLeg")
 right_leg = NodePath("../../RightLeg")
 speed = 450.0
+walk_height = 5.0
+move_speed = 10.0
+leg_rotation = 10.0
+leg_rotation_speed = 1.5
+player_movement = NodePath("../../player_pivots")
 metadata/_custom_type_script = "uid://dvkjuyvs2b068"
 
 [node name="leftleg" type="Node2D" parent="torso"]
-position = Vector2(39.99999, 250)
+position = Vector2(39.99999, 235)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="rightleg" type="Node2D" parent="torso"]
-position = Vector2(-60, 259.99997)
+position = Vector2(-60, 244.99997)
 
 [node name="Hands" type="Node2D" parent="torso" node_paths=PackedStringArray("left_hand_pivot", "right_hand_pivot", "left_hand", "right_hand", "weapon")]
 scale = Vector2(0.9999998, 0.9999998)
