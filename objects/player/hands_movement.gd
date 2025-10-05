@@ -23,13 +23,11 @@ class_name Hands
 
 @export var weapon : GunShoot
 
-var x1 : float
+var x : float
 
 var arms_dir 
 
 func _ready():
-	x1 = randf_range(-2,2)+ randf_range(-2,2)
-
 	weapon.shotted.connect(on_shot)	
 
 func on_shot():
@@ -47,7 +45,7 @@ func _process(delta):
 	if ll > max_offset:
 		left_hand.global_position = left_hand.global_position.move_toward(left_hand_pivot.global_position,move_speed*delta)
 	else:
-		left_hand.global_position = left_hand.global_position.move_toward(left_hand_pivot.global_position + Vector2(sin(x1),cos(x1))*offset,move_speed/2*delta)
+		left_hand.global_position = left_hand.global_position.move_toward(left_hand_pivot.global_position + Vector2(sin(x),cos(x))*offset,move_speed/2*delta)
 
 	right_hand.global_position = right_hand.global_position.move_toward(right_hand_pivot.global_position+mouse_dir.normalized()*Vector2(0,right_hand_move),move_speed*delta)
 	
@@ -56,4 +54,4 @@ func _process(delta):
 	left_hand.rotation_degrees = rad_to_deg(arms_dir.angle())-180 
 	right_hand.rotation = arms_dir.angle() 
 
-	x1 += delta*speed 
+	x += delta*speed 
