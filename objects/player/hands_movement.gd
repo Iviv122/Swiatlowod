@@ -24,19 +24,16 @@ class_name Hands
 @export var weapon : GunShoot
 
 var x1 : float
-var x2 : float 
 
 var arms_dir 
 
 func _ready():
 	x1 = randf_range(-2,2)+ randf_range(-2,2)
-	x2 = randf_range(-2,2) + randf_range(-2,2) + x1
 
 	weapon.shotted.connect(on_shot)	
 
 func on_shot():
 	right_hand.position.y -= right_hand_move_on_shot
-	print(right_hand.position.y)
 	right_hand.position.y = clampf(right_hand.global_position.y,-min_right_y,max_right_y)
 
 func _process(delta):
@@ -60,4 +57,3 @@ func _process(delta):
 	right_hand.rotation = arms_dir.angle() 
 
 	x1 += delta*speed 
-	x2 += delta*speed
