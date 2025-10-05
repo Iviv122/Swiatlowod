@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://2sdw3p1j1ecu"]
+
+[ext_resource type="PackedScene" uid="uid://uvoj4shclb3a" path="res://assets/player/player_pack_gun.tscn" id="1_7biu0"]
+[ext_resource type="Script" uid="uid://b6plx7fbkhm6j" path="res://objects/enemy/enemy.gd" id="2_00tan"]
+[ext_resource type="Script" uid="uid://do6lkfos8ot3" path="res://objects/enemy/moving_enemy.gd" id="2_l1v76"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlayerPack" parent="." instance=ExtResource("1_7biu0")]
+position = Vector2(-5, -9)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(361, -4)
+disable_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+uv = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+
+[node name="moving_enemy" type="Area2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(371, 158)
+script = ExtResource("2_l1v76")
+speed = 200.0
+damage_on_contace = 15.0
+target = NodePath("../PlayerPack/player_pivots")
+explode_distance = 5.0
+health = 15.0
+metadata/_custom_type_script = "uid://do6lkfos8ot3"
+
+[node name="Polygon2D" type="Polygon2D" parent="moving_enemy"]
+polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+uv = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="moving_enemy"]
+polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+
+[node name="static_enemy" type="Area2D" parent="."]
+position = Vector2(366, -149)
+script = ExtResource("2_00tan")
+health = 15.0
+metadata/_custom_type_script = "uid://b6plx7fbkhm6j"
+
+[node name="Polygon2D" type="Polygon2D" parent="static_enemy"]
+polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+uv = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="static_enemy"]
+polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
+
+[editable path="PlayerPack"]
