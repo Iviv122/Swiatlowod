@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4e0ci55abq33"]
+
+[ext_resource type="Texture2D" uid="uid://bhokov13r3ybk" path="res://raw_assets/bullet_shell.png" id="1_8yl8y"]
+[ext_resource type="Script" uid="uid://braofcgxdf88n" path="res://objects/general/die_effect.gd" id="2_67xe5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8yl8y"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 82.35
+initial_velocity_max = 247.06
+gravity = Vector3(0, 900, 0)
+scale_min = 0.07
+scale_max = 0.07
+color = Color(1, 1, 0.5176471, 1)
+
+[node name="Node2D" type="GPUParticles2D"]
+emitting = false
+amount = 1
+texture = ExtResource("1_8yl8y")
+lifetime = 0.53
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_8yl8y")
+script = ExtResource("2_67xe5")

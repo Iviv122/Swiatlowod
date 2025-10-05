@@ -1,11 +1,11 @@
-extends Node
+extends Node2D
 class_name GameManager
 
 @export var StartScene : PackedScene
 
 func _ready():
 	add_to_group("load_scene")
-	add_child(StartScene.instantiate())
+	load_scene(StartScene)
 
 func load_scene(scene : PackedScene):
 	for i in get_children():

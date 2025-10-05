@@ -14,7 +14,8 @@ var reload_time = 1
 var is_shooting = false
 
 @export var shoot_effect : GPUParticles2D
-@export var ammo_used_effect : GPUParticles2D
+@export var ammo_used_effect : PackedScene 
+@export var ammo_pivot : Node2D
 
 signal shotted()
 
@@ -49,7 +50,7 @@ func shoot():
 	else:
 		shoot_line.add_point(shoot_dir)
 
-	get_tree().root.add_child(shoot_line)
+	get_tree().root.get_child(0).add_child(shoot_line)
 	await get_tree().create_timer(shoot_line_time).timeout
 	shoot_line.queue_free()
 
@@ -58,6 +59,13 @@ func _process(delta):
 	if is_shooting and reload_time <= 0:
 		
 		shotted.emit()
+		
+		var effect : DieEffect = ammo_used_effect.instantiate()
+		effect.global_position = ammo_pivot.global_position 
+		effect.rotation = rotation
+		effect.restart()
+		get_tree().root.get_child(0).add_child(effect)
+		
 		shoot()
 		reload_time = 1
 

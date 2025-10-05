@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bwetge866k1rt" path="res://scenes/main_menu.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node2D"]
-
-[node name="SceneLoader" type="Node2D" parent="."]
 script = ExtResource("1_ig7tw")
 StartScene = ExtResource("2_0xm2m")
 metadata/_custom_type_script = "uid://dtllu7rs3tomu"
