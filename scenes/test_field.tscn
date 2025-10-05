@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://2sdw3p1j1ecu"]
 
 [ext_resource type="PackedScene" uid="uid://uvoj4shclb3a" path="res://assets/player/player_pack_gun.tscn" id="1_xwt66"]
-[ext_resource type="Script" uid="uid://do6lkfos8ot3" path="res://objects/enemy/moving_enemy.gd" id="2_wtn2h"]
-[ext_resource type="Script" uid="uid://b6plx7fbkhm6j" path="res://objects/enemy/enemy.gd" id="3_7itsv"]
+[ext_resource type="PackedScene" uid="uid://vob5800yqsfx" path="res://assets/moving_enemy.tscn" id="3_xwt66"]
+[ext_resource type="Script" uid="uid://cq0eam3b21hdi" path="res://objects/general/you_are_dead.gd" id="4_7itsv"]
 [ext_resource type="Script" uid="uid://4f1ihyeu03lp" path="res://objects/general/load_scene_name.gd" id="4_wtn2h"]
 
 [node name="Node2D" type="Node2D"]
@@ -10,56 +10,235 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="PlayerPack" parent="." instance=ExtResource("1_xwt66")]
-position = Vector2(-5, -9)
+position = Vector2(-411, 5)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(361, -4)
-disable_mode = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-uv = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-
-[node name="moving_enemy" type="Area2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(371, 158)
-script = ExtResource("2_wtn2h")
-speed = 200.0
-damage_on_contace = 15.0
-target = NodePath("../PlayerPack/player_pivots")
-explode_distance = 5.0
-health = 15.0
-metadata/_custom_type_script = "uid://do6lkfos8ot3"
-
-[node name="Polygon2D" type="Polygon2D" parent="moving_enemy"]
-polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-uv = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="moving_enemy"]
-polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-
-[node name="static_enemy" type="Area2D" parent="."]
-position = Vector2(366, -149)
-script = ExtResource("3_7itsv")
-health = 15.0
-metadata/_custom_type_script = "uid://b6plx7fbkhm6j"
-
-[node name="Polygon2D" type="Polygon2D" parent="static_enemy"]
-polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-uv = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="static_enemy"]
-polygon = PackedVector2Array(-5, -42.737, 44.95, 10.553, -38.375, 17.483)
-
-[node name="LoadScene" type="Button" parent="."]
-offset_left = -414.0
-offset_top = -204.0
-offset_right = -369.0
-offset_bottom = -173.0
+[node name="LoadScene" type="Button" parent="CanvasLayer"]
+offset_right = 45.0
+offset_bottom = 31.0
 text = "Back"
 script = ExtResource("4_wtn2h")
 scene_name = "res://scenes/main_menu.tscn"
+
+[node name="MovingEnemy3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(891, 91)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1110, -7)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy5" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(470, 90)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy6" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(689, -8)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy7" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(369, -106)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy9" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(834, 4)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy10" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1053, -94)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy11" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(733, -192)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy12" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(934, 231)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy8" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(570, 317)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(790, -105)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy13" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1882, 409)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy14" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(2101, 311)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy15" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1461, 408)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy16" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1680, 310)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy17" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1360, 212)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy18" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1825, 322)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy19" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(2044, 224)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy20" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1724, 126)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy21" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1925, 549)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy22" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1561, 635)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy23" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1781, 213)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy25" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1019, 145)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy26" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1238, 47)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy27" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(598, 144)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy28" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(817, 46)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy29" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(497, -52)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy30" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(962, 58)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy31" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1181, -40)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy32" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(861, -138)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy33" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1062, 285)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy34" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(698, 371)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy35" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(918, -51)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy36" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(2010, 463)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy37" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(2229, 365)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy38" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1589, 462)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy39" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1808, 364)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy40" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1488, 266)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy41" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1953, 376)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy42" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(2172, 278)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy43" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1852, 180)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy44" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(2053, 603)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy45" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1689, 689)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy46" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1909, 267)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy47" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(2110, 690)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy48" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1119, 372)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy24" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(1982, 636)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="MovingEnemy4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_xwt66")]
+position = Vector2(991, 318)
+target = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_7itsv")
+player = NodePath("../PlayerPack/player_pivots/Player")
+
+[node name="Panel" type="Panel" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -11.5
+offset_right = 79.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "YOU ARE DEAD MAN"
 
 [editable path="PlayerPack"]

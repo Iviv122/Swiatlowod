@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://uvoj4shclb3a"]
+[gd_scene load_steps=21 format=3 uid="uid://uvoj4shclb3a"]
 
 [ext_resource type="Texture2D" uid="uid://dxr2hvmgmqrxj" path="res://raw_assets/leg.png" id="1_mowxb"]
 [ext_resource type="Texture2D" uid="uid://bcybb5yoom05u" path="res://raw_assets/body.png" id="2_abrf3"]
@@ -15,9 +15,17 @@
 [ext_resource type="PackedScene" uid="uid://b4e0ci55abq33" path="res://assets/bullet_shell.tscn" id="11_km2es"]
 [ext_resource type="Texture2D" uid="uid://k1ikovx5jyk2" path="res://raw_assets/left_hand_shoot.png" id="14_fnr01"]
 [ext_resource type="Texture2D" uid="uid://drynkpf0kb2e" path="res://raw_assets/right_shoot_hand.png" id="15_km2es"]
+[ext_resource type="Script" uid="uid://nu8oqnq0gmt7" path="res://objects/player/player_health_bar.gd" id="16_mrgbd"]
+[ext_resource type="Script" uid="uid://dgydjwetkw8na" path="res://objects/player/player.gd" id="17_105tm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oujpj"]
 size = Vector2(132, 132)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_105tm"]
+bg_color = Color(0.9830399, 0.28623638, 0.6390664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpa5h"]
+bg_color = Color(1.4439226e-07, 0.7183941, 0.36224508, 1)
 
 [node name="PlayerPack" type="Node2D"]
 
@@ -147,6 +155,23 @@ x_offset = -25.0
 y_offset = -20.0
 gun = NodePath("../../Gun")
 metadata/_custom_type_script = "uid://bywpc1jdu8wu6"
+
+[node name="Player" type="Node2D" parent="player_pivots" node_paths=PackedStringArray("player_root")]
+script = ExtResource("17_105tm")
+player_root = NodePath("../..")
+metadata/_custom_type_script = "uid://dgydjwetkw8na"
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="player_pivots" node_paths=PackedStringArray("player")]
+custom_minimum_size = Vector2(128, 0)
+offset_left = -60.0
+offset_top = -111.0
+offset_right = 68.0
+offset_bottom = -84.0
+theme_override_styles/background = SubResource("StyleBoxFlat_105tm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cpa5h")
+show_percentage = false
+script = ExtResource("16_mrgbd")
+player = NodePath("../Player")
 
 [node name="torso_pivot" type="Node2D" parent="player_pivots"]
 

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://vob5800yqsfx"]
+
+[ext_resource type="Script" uid="uid://do6lkfos8ot3" path="res://objects/enemy/moving_enemy.gd" id="1_nwrgi"]
+[ext_resource type="Texture2D" uid="uid://cneuhbm7ctnqn" path="res://icon.svg" id="2_m3gcw"]
+[ext_resource type="Script" uid="uid://dkah7s7l5y2w5" path="res://objects/enemy/enemy_health_bar.gd" id="3_m3gcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtn2h"]
+size = Vector2(136, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3gcw"]
+bg_color = Color(1, 0.28397617, 0.5619485, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmjbd"]
+bg_color = Color(2.4065375e-07, 0.72706085, 0.13358477, 1)
+
+[node name="MovingEnemy" type="Area2D"]
+script = ExtResource("1_nwrgi")
+speed = 250.0
+damage_on_contace = 1.0
+explode_distance = 3.0
+health = 5.0
+metadata/_custom_type_script = "uid://do6lkfos8ot3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wtn2h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m3gcw")
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("player")]
+custom_minimum_size = Vector2(128, 0)
+offset_left = -57.0
+offset_top = -105.0
+offset_right = 71.0
+offset_bottom = -78.0
+theme_override_styles/background = SubResource("StyleBoxFlat_m3gcw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cmjbd")
+show_percentage = false
+script = ExtResource("3_m3gcw")
+player = NodePath("..")

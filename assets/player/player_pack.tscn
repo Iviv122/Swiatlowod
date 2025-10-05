@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dp3p4p8jfaon5"]
+[gd_scene load_steps=16 format=3 uid="uid://dp3p4p8jfaon5"]
 
 [ext_resource type="Script" uid="uid://dyn3cmlils2wa" path="res://objects/player/player_movement.gd" id="1_oujpj"]
 [ext_resource type="Texture2D" uid="uid://bcybb5yoom05u" path="res://raw_assets/body.png" id="2_excy4"]
@@ -10,9 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://ciy71eeti6u3b" path="res://raw_assets/head.png" id="4_excy4"]
 [ext_resource type="Script" uid="uid://geuq4ne3nt4k" path="res://objects/player/head_movement.gd" id="5_sbhkb"]
 [ext_resource type="Texture2D" uid="uid://dxr2hvmgmqrxj" path="res://raw_assets/leg.png" id="8_2qth2"]
+[ext_resource type="Script" uid="uid://nu8oqnq0gmt7" path="res://objects/player/player_health_bar.gd" id="11_1m4mt"]
+[ext_resource type="Script" uid="uid://dgydjwetkw8na" path="res://objects/player/player.gd" id="12_he6r7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oujpj"]
 size = Vector2(132, 132)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m4mt"]
+bg_color = Color(0.9830399, 0.28623638, 0.6390664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he6r7"]
+bg_color = Color(1.4439226e-07, 0.7183941, 0.36224508, 1)
 
 [node name="PlayerPack" type="Node2D"]
 
@@ -36,7 +44,6 @@ move_angle = 15.0
 speed = 460.0
 rotate_speed = 8.0
 player_movement = NodePath("../player_pivots")
-metadata/_custom_type_script = "uid://cjakgnmo4hucw"
 
 [node name="Head_pivot" type="Node2D" parent="torso"]
 position = Vector2(4.9999995, -225)
@@ -54,7 +61,6 @@ left_hand_pivot = NodePath("../left_hand")
 right_hand_pivot = NodePath("../right_hand")
 left_hand = NodePath("../../left_hand2")
 right_hand = NodePath("../../right_hand2")
-metadata/_custom_type_script = "uid://mbrji61x71ca"
 
 [node name="left_hand" type="Node2D" parent="torso"]
 position = Vector2(-154.99997, 14.999996)
@@ -72,7 +78,6 @@ right_leg_pivot = NodePath("../rightleg")
 left_leg = NodePath("../../LeftLeg")
 right_leg = NodePath("../../RightLeg")
 speed = 450.0
-metadata/_custom_type_script = "uid://dvkjuyvs2b068"
 
 [node name="leftleg" type="Node2D" parent="torso"]
 position = Vector2(39.99999, 250)
@@ -100,15 +105,29 @@ offset_move = 15.0
 rotation_amplify = 15.0
 move_speed = 400.0
 pivot = NodePath("../torso/Head_pivot")
-metadata/_custom_type_script = "uid://ndine7ctd24i"
 
 [node name="player_pivots" type="CharacterBody2D" parent="."]
 motion_mode = 1
 script = ExtResource("1_oujpj")
 speed = 250.0
-metadata/_custom_type_script = "uid://bpi2iuvrp2xn7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_pivots"]
 shape = SubResource("RectangleShape2D_oujpj")
 
 [node name="torso_pivot" type="Node2D" parent="player_pivots"]
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="player_pivots" node_paths=PackedStringArray("player")]
+custom_minimum_size = Vector2(128, 0)
+offset_left = -60.0
+offset_top = -111.0
+offset_right = 68.0
+offset_bottom = -84.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1m4mt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_he6r7")
+show_percentage = false
+script = ExtResource("11_1m4mt")
+player = NodePath("../../Player")
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("12_he6r7")
+metadata/_custom_type_script = "uid://dgydjwetkw8na"
