@@ -1,17 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://uvoj4shclb3a"]
+[gd_scene load_steps=16 format=3 uid="uid://uvoj4shclb3a"]
 
 [ext_resource type="Texture2D" uid="uid://dxr2hvmgmqrxj" path="res://raw_assets/leg.png" id="1_mowxb"]
 [ext_resource type="Texture2D" uid="uid://bcybb5yoom05u" path="res://raw_assets/body.png" id="2_abrf3"]
 [ext_resource type="Script" uid="uid://84ey01ams5xy" path="res://objects/player/torso_movement.gd" id="3_6fwas"]
+[ext_resource type="Script" uid="uid://dcclhkkk64k1q" path="res://objects/player/hands_movement.gd" id="4_fnr01"]
 [ext_resource type="Script" uid="uid://bywpc1jdu8wu6" path="res://objects/player/gun_holder.gd" id="5_abrf3"]
 [ext_resource type="Script" uid="uid://w5lwre75jjcp" path="res://objects/player/legs_movement.gd" id="5_km2es"]
 [ext_resource type="Texture2D" uid="uid://ciy71eeti6u3b" path="res://raw_assets/head.png" id="8_cpa5h"]
-[ext_resource type="Script" uid="uid://b7cui0a6xjwgu" path="res://objects/player_gun/gun_sprite.gd" id="8_p6iwn"]
 [ext_resource type="Script" uid="uid://geuq4ne3nt4k" path="res://objects/player/head_movement.gd" id="9_bfw8s"]
 [ext_resource type="Script" uid="uid://b3u1kvkolnl45" path="res://objects/player_gun/gunshoot.gd" id="9_q1gb7"]
 [ext_resource type="Script" uid="uid://dyn3cmlils2wa" path="res://objects/player/player_movement.gd" id="10_dk2kp"]
 [ext_resource type="Resource" uid="uid://du6agdna6cwv8" path="res://assets/mlg_gun.res" id="10_mowxb"]
 [ext_resource type="Texture2D" uid="uid://dnhnbl6j2hkqi" path="res://raw_assets/gun.png" id="11_a6m67"]
+[ext_resource type="Texture2D" uid="uid://k1ikovx5jyk2" path="res://raw_assets/left_hand_shoot.png" id="14_fnr01"]
+[ext_resource type="Texture2D" uid="uid://drynkpf0kb2e" path="res://raw_assets/right_shoot_hand.png" id="15_km2es"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oujpj"]
 size = Vector2(132, 132)
@@ -61,23 +63,34 @@ scale = Vector2(0.99999994, 0.99999994)
 [node name="rightleg" type="Node2D" parent="torso"]
 position = Vector2(-60, 259.99997)
 
-[node name="gun_pivot" type="Node2D" parent="torso" node_paths=PackedStringArray("left_hand_pivot", "right_hand_pivot")]
-position = Vector2(95, -44.999992)
-script = ExtResource("5_abrf3")
+[node name="Hands" type="Node2D" parent="torso" node_paths=PackedStringArray("left_hand_pivot", "right_hand_pivot", "left_hand", "right_hand", "weapon")]
+scale = Vector2(0.9999998, 0.9999998)
+script = ExtResource("4_fnr01")
+speed = 15.0
+move_speed = 450.0
+offset = 0.5
+max_offset = 5.0
+hand_rot = 0.05
 left_hand_pivot = NodePath("../left_hand")
 right_hand_pivot = NodePath("../right_hand")
-x_offset = 15.0
-metadata/_custom_type_script = "uid://bywpc1jdu8wu6"
+left_hand = NodePath("../../right_hand")
+right_hand = NodePath("../../left_hand")
+right_hand_move = 70.0
+right_hand_move_on_shot = 15.0
+min_right_y = 140.0
+max_right_y = 140.0
+weapon = NodePath("../../Gun/GunShoot")
+metadata/_custom_type_script = "uid://mbrji61x71ca"
 
 [node name="left_hand" type="Node2D" parent="torso"]
-position = Vector2(-154.99997, 14.999996)
+position = Vector2(-115, 10.000001)
 scale = Vector2(5, 5)
 
 [node name="right_hand" type="Node2D" parent="torso"]
-position = Vector2(160, 15.000002)
+position = Vector2(190, 1.9073486e-06)
 scale = Vector2(5, 5)
 
-[node name="Head" type="Sprite2D" parent="." node_paths=PackedStringArray("pivot")]
+[node name="Head" type="Sprite2D" parent="." node_paths=PackedStringArray("pivot", "hands")]
 position = Vector2(0, -45)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_cpa5h")
@@ -86,20 +99,13 @@ offset_move = 15.0
 rotation_amplify = 15.0
 move_speed = 400.0
 pivot = NodePath("../torso/Head_pivot")
+hands = NodePath("../torso/Hands")
 metadata/_custom_type_script = "uid://ndine7ctd24i"
 
-[node name="Gun" type="Sprite2D" parent="." node_paths=PackedStringArray("pivot", "gun_point")]
+[node name="Gun" type="Sprite2D" parent="."]
 position = Vector2(13.999999, 9)
 scale = Vector2(0.6999998, 0.6999998)
 texture = ExtResource("11_a6m67")
-script = ExtResource("8_p6iwn")
-pivot = NodePath("../torso/gun_pivot")
-speed = 230.0
-rotate_speed = 7.0
-posy_on_shot = 4.0
-rotate_on_shot = 25.0
-gun_point = NodePath("GunShoot")
-metadata/_custom_type_script = "uid://b7cui0a6xjwgu"
 
 [node name="GunShoot" type="Node2D" parent="Gun"]
 position = Vector2(135.71428, 8.571427)
@@ -124,4 +130,25 @@ metadata/_custom_type_script = "uid://bpi2iuvrp2xn7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_pivots"]
 shape = SubResource("RectangleShape2D_oujpj")
 
+[node name="gun_holder" type="Node2D" parent="player_pivots" node_paths=PackedStringArray("left_hand_pivot", "right_hand_pivot", "gun")]
+position = Vector2(0, 4.9999995)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("5_abrf3")
+left_hand_pivot = NodePath("../../right_hand")
+right_hand_pivot = NodePath("../../left_hand")
+x_offset = -25.0
+y_offset = -20.0
+gun = NodePath("../../Gun")
+metadata/_custom_type_script = "uid://bywpc1jdu8wu6"
+
 [node name="torso_pivot" type="Node2D" parent="player_pivots"]
+
+[node name="left_hand" type="Sprite2D" parent="."]
+position = Vector2(41, 22)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("14_fnr01")
+
+[node name="right_hand" type="Sprite2D" parent="."]
+position = Vector2(-20.999998, 27.999998)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("15_km2es")

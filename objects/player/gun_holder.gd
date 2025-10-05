@@ -7,13 +7,18 @@ class_name GunHolder
 @export var x_offset : float
 @export var y_offset : float
 
+@export var gun : Sprite2D
+
 var weapon_pos : Vector2
 
 func _process(_delta):
-    weapon_pos = (right_hand_pivot.global_position - left_hand_pivot.global_position)/2
+	weapon_pos = (right_hand_pivot.position - left_hand_pivot.position)/2
 
-    weapon_pos.x += x_offset
-    weapon_pos.y += y_offset
+	#gun.rotation = rotate_toward(gun.rotation,weapon_pos.angle(),1)
 
-# aim
-# gun dir
+	gun.rotation = weapon_pos.angle() 
+
+	weapon_pos.x += x_offset
+	weapon_pos.y += y_offset
+
+	gun.global_position = global_position+weapon_pos
